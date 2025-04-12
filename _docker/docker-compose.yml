@@ -1,0 +1,18 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: projet5-web
+    volumes:
+      - ../:/usr/share/nginx/html:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - sandbox-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.projet5.rule=Host(`projet5.traefik.me`)"
+      - "traefik.http.routers.projet5.entrypoints=web"
+      - "traefik.http.services.projet5.loadbalancer.server.port=80"
+
+networks:
+  sandbox-network:
+    external: true
