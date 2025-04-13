@@ -4,44 +4,47 @@
     <meta charset="UTF-8">
     <title>Messages</title>
     <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
-<div id="result" style="margin-top: 20px;"></div>
-<div id="info" style="margin-top: 20px;"></div>
+<!-- HEADER (optionnel pour les messages globaux) -->
+<div id="info" class="bg-yellow-100 text-yellow-800 p-2 text-center text-sm">
+    🔔 Bienvenue dans le mini chat !
+</div>
 
+<!-- MAIN CHAT SECTION -->
+<main class="flex-1 flex flex-col">
 
-<!--MESSAGES-->
-<section>
-    <h1>Liste des messages</h1>
-    <div id="messages"></div>
-</section>
+    <!-- Messages container -->
+    <section id="messages-container" class="flex-1 overflow-y-auto px-4 py-2 flex flex-col-reverse gap-2"
+             style="max-height: calc(100vh - 140px);">
+        <div id="messages">
+            <!-- Les messages s'ajouteront ici -->
+        </div>
+    </section>
 
-<hr/>
+    <!-- Formulaire -->
+    <section class="border-t bg-white p-4">
+        <form id="message-form" class="flex gap-2">
 
-<!--FORM-->
-<section>
-    <h1>Ajouter un message</h1>
+            <select id="type" class="border border-gray-300 rounded p-2 text-sm">
+                <option value="info">Info</option>
+                <option value="warning">Warning</option>
+                <option value="error">Error</option>
+            </select>
 
-    <form id="message-form">
-        <label for="type">Type :</label>
-        <select id="type">
-            <option value="info">Info</option>
-            <option value="warning">Warning</option>
-            <option value="error">Error</option>
-        </select>
+            <input type="text" id="content" required
+                   placeholder="Écris ton message ici..."
+                   class="flex-1 border border-gray-300 rounded p-2 text-sm"/>
 
-        <br />
-
-        <label for="content">Message :</label>
-        <input type="text" id="content" required />
-
-        <br />
-
-        <button type="submit">Envoyer</button>
-    </form>
-</section>
-
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded text-sm">
+                Envoyer
+            </button>
+        </form>
+    </section>
+</main>
 
 <script src="./app.js" type="module"></script>
 
