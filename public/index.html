@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="result" style="margin-top: 20px;"></div>
+<div id="info" style="margin-top: 20px;"></div>
+
+
+<!--MESSAGES-->
+<section>
+    <h1>Liste des messages</h1>
+    <div id="messages"></div>
+</section>
+
+<hr/>
+
+<!--FORM-->
+<section>
+    <h1>Ajouter un message</h1>
+
+    <form id="message-form">
+        <label for="type">Type :</label>
+        <select id="type">
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+            <option value="error">Error</option>
+        </select>
+
+        <br />
+
+        <label for="content">Message :</label>
+        <input type="text" id="content" required />
+
+        <br />
+
+        <button type="submit">Envoyer</button>
+    </form>
+</section>
+
+
+<script src="./app.js" type="module"></script>
+
+</body>
+</html>
