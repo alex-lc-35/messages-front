@@ -1,6 +1,19 @@
 /*public/app.js*/
 import { get, post } from './services/httpService.js';
 
+const socket = io("http://socket.sandbox.traefik.me");
+
+socket.on("connect", () => {
+    console.log("🟢 Connecté au serveur WebSocket");
+});
+
+socket.on("chat message", async (msg) => {
+    console.log("💬 Message reçu :", msg);
+    const message = await get('messages.php?id=' + msg.id);
+    appendMessage(message)
+    console.log("💬 Message reçu :", message);
+});
+
 window.addEventListener('DOMContentLoaded', async () => {
     const messages = await get('messages.php');
     const container = document.getElementById('messages');
@@ -18,8 +31,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const type = document.getElementById('type').value;
         const content = document.getElementById('content').value;
-        const newMessage = await post('messages.php', { type, content });
-        appendMessage(newMessage)
+        await post('messages.php', { type, content });
     });
 });
 
