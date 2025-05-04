@@ -71,7 +71,7 @@ case "$COMMAND" in
     ;;
   logs-nginx)
     echo "📜 Logs du conteneur projet-4-nginx"
-    docker logs -f projet-5-nginx
+    docker logs -f messages-front-nginx
     ;;
   *)
     echo "❌ Commande inconnue: $COMMAND"

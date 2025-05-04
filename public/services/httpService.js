@@ -1,4 +1,4 @@
-const baseURL = "http://sandbox.projet-4.me/api/";
+const baseURL = "http://messages.me/api/";
 
 export async function get(endpoint) {
     try {

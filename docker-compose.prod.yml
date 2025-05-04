@@ -1,7 +1,7 @@
 services:
   web:
     image: nginx:alpine
-    container_name: projet-5-nginx
+    container_name: messages-front-nginx
     volumes:
       - ../public:/usr/share/nginx/html:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
