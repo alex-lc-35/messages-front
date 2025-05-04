@@ -9,7 +9,7 @@ services:
       - sandbox-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.projet5.rule=Host(`projet5.traefik.me`)"
+      - "traefik.http.routers.projet5.rule=Host(`test2.rfess.fr`)"
       - "traefik.http.routers.projet5.entrypoints=web"
       - "traefik.http.services.projet5.loadbalancer.server.port=80"
 
