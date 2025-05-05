@@ -1,11 +1,9 @@
 /*public/app.js*/
-import { get, post } from './services/httpService.js';
+import {get, post} from './services/httpService.js';
 
-console.log("GO !!!!!")
-
-const socket = io("http://messages.me", {
-    path: "/socket/socket.io",
-    transports: ["websocket"], // forcer uniquement websocket (pas polling)
+const socket = io(window.env.SOCKET_URL, {
+    path: window.env.SOCKET_PATH,
+    transports: ["websocket"],
 });
 
 socket.on("connect", () => {
@@ -35,8 +33,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
 
         const type = document.getElementById('type').value;
-        const content = document.getElementById('content').value;
-        await post('messages.php', { type, content });
+        const content = document.getElementById('content');
+        const message = content.value;
+        await post('messages.php', {'type': type, 'content': message});
+        content.value = '';
     });
 });
 
