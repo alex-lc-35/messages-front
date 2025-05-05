@@ -1,25 +1,26 @@
 #!/bin/bash
 
-# Helper multi-commande pour le projet-4 (global, prod d'abord)
+# Helper multi-commande pour messages-front (global, prod d'abord)
 
 DOCKER_COMPOSE_FILE="_docker/docker-compose.yml"
 DOCKER_COMPOSE_PROD_FILE="_docker/docker-compose.prod.yml"
 
 show_help() {
   echo ""
-  echo "🛠️  Helper Docker - projet-4 (global)"
+  echo "🛠️  Helper Docker - messages-front (global)"
   echo ""
   echo "Commandes disponibles :"
   echo "  prod-up            → Démarrer tous les services (production)"
   echo "  prod-down          → Arrêter tous les services (production)"
   echo "  prod-destroy       → Supprimer complètement tous les conteneurs (production)"
-  echo "  prod-refresh       → Redémarrer tous les services (production)"
-  echo "  prod-restart       → Redémarrer tous les services (production)"
+  echo "  prod-refresh       → Rebuild + restart (production)"
+  echo "  prod-restart       → Restart des services (production)"
   echo "  up                 → Démarrer tous les services (développement)"
   echo "  down               → Arrêter tous les services (développement)"
   echo "  destroy            → Supprimer complètement tous les conteneurs (développement)"
-  echo "  refresh            → Redémarrer tous les services (développement)"
-  echo "  restart            → Redémarrer tous les services (développement)"
+  echo "  refresh            → Rebuild + restart (développement)"
+  echo "  restart            → Restart des services (développement)"
+  echo "  logs-nginx         → Afficher les logs du conteneur Nginx"
 }
 
 if [ $# -lt 1 ]; then
@@ -42,12 +43,12 @@ case "$COMMAND" in
     docker compose -f "$DOCKER_COMPOSE_PROD_FILE" down --volumes --remove-orphans
     ;;
   prod-refresh)
-    echo "🔄 Redémarrage complet des services en production"
+    echo "🔄 Rebuild + redémarrage (production)"
     docker compose -f "$DOCKER_COMPOSE_PROD_FILE" down
     docker compose -f "$DOCKER_COMPOSE_PROD_FILE" up -d --build
     ;;
   prod-restart)
-    echo "🔄 Redémarrage des services en production"
+    echo "🔄 Redémarrage (production)"
     docker compose -f "$DOCKER_COMPOSE_PROD_FILE" restart
     ;;
   up)
@@ -61,16 +62,16 @@ case "$COMMAND" in
     docker compose -f "$DOCKER_COMPOSE_FILE" down --volumes --remove-orphans
     ;;
   refresh)
-    echo "🔄 Redémarrage complet des services en développement"
+    echo "🔄 Rebuild + redémarrage (développement)"
     docker compose -f "$DOCKER_COMPOSE_FILE" down
     docker compose -f "$DOCKER_COMPOSE_FILE" up -d --build
     ;;
   restart)
-    echo "🔄 Redémarrage des services en développement"
+    echo "🔄 Redémarrage (développement)"
     docker compose -f "$DOCKER_COMPOSE_FILE" restart
     ;;
   logs-nginx)
-    echo "📜 Logs du conteneur projet-4-nginx"
+    echo "📜 Logs du conteneur messages-front-nginx"
     docker logs -f messages-front-nginx
     ;;
   *)

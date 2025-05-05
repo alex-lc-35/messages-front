@@ -1,10 +1,14 @@
 messages-front/
 ├── _docker/
 │   ├── nginx/
-│   ├── docker-compose.yml
-│   └── herper.sh
+│   │   └── default.conf
+│   ├── docker-compose.yml             # Environnement local
+│   ├── docker-compose.prod.yml        # Environnement prod
+│   ├── helper.sh                      # Script commun (up, down, etc.)
+├── public/                            # (ou dist/ ou build/, selon ton setup)
+│   ├── index.html
+│   ├── app.js
+│   └── style.css
 ├── doc/
 ├── .gitignore
-├── app.js
-├── index.html
-└── style.css
+├── .env                               # (si nécessaire pour une config client)
