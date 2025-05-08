@@ -1,4 +1,4 @@
-const baseURL = "http://messages.me/api/";
+const baseURL = window.env.API_URL;
 
 export async function get(endpoint) {
     try {
